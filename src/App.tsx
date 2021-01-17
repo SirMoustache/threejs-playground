@@ -1,10 +1,12 @@
-import * as React from "react";
-import "./styles.css";
+import * as React from 'react';
+import * as THREE from 'three';
+import './styles.css';
 
-import { SceneManager } from "./scene/sceneManager";
-import { createAnimal } from "./scene/animal";
-import { Entity } from "./scene/entity";
-import { KeyboardControl } from "./scene/controls";
+import { SceneManager } from './scene/sceneManager';
+import { createAnimal } from './scene/animal';
+import { createWorld } from './scene/world';
+import { Entity } from './scene/entity';
+import { KeyboardControl } from './scene/controls';
 
 export default function App() {
   const canvasRef = React.useRef<HTMLElement | null>(null);
@@ -12,10 +14,21 @@ export default function App() {
 
   React.useEffect(() => {
     if (canvasRef.current) {
-      console.log("canvasRef.current");
+      console.log('canvasRef.current');
       console.log({ scene });
       const player = new Entity(createAnimal());
+      const world = createWorld();
+      const axesHelper = new THREE.AxesHelper(50);
+      console.log({ world });
+
+      scene.add(new THREE.BoxHelper(world));
+      scene.add(axesHelper);
       scene.add(player.object);
+
+      // world.position.x = 20;
+      world.position.divideScalar(20).floor().multiplyScalar(20).addScalar(10);
+
+      scene.add(world);
       scene.appendTo(canvasRef.current);
       scene.render();
 
@@ -35,7 +48,7 @@ export default function App() {
       <div
         id="world"
         ref={(el) => (canvasRef.current = el)}
-        style={{ width: "100%", height: "300px", border: "1px solid tomato" }}
+        style={{ width: '100%', height: '300px', border: '1px solid tomato' }}
       />
     </div>
   );
