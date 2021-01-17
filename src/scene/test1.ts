@@ -1,7 +1,7 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 function main() {
-  const canvas = document.querySelector("#c") as any;
+  const canvas = document.querySelector('#c') as any;
   const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 
   const fov = 45;
@@ -15,21 +15,21 @@ function main() {
   camera.lookAt(0, 0, 0);
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color("black");
+  scene.background = new THREE.Color('black');
 
   scene.add(new THREE.GridHelper(40, 40));
 
-  let player;
+  let player: any;
   {
     const cubeSize = 1;
     const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
-    const cubeMat = new THREE.MeshBasicMaterial({ color: "red" });
+    const cubeMat = new THREE.MeshBasicMaterial({ color: 'red' });
     player = new THREE.Mesh(cubeGeo, cubeMat);
     player.position.set(0.5, 0.5, 0.5);
     scene.add(player);
   }
 
-  function resizeRendererToDisplaySize(renderer) {
+  function resizeRendererToDisplaySize(renderer: any) {
     const canvas = renderer.domElement;
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
@@ -57,7 +57,7 @@ function main() {
 
   requestAnimationFrame(render);
 
-  window.addEventListener("keydown", (e) => {
+  window.addEventListener('keydown', (e) => {
     e.preventDefault();
     switch (e.keyCode) {
       case 38: // up

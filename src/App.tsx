@@ -18,11 +18,9 @@ export default function App() {
       console.log({ scene });
       const player = new Entity(createAnimal());
       const world = createWorld();
-      const axesHelper = new THREE.AxesHelper(50);
       console.log({ world });
 
       scene.add(new THREE.BoxHelper(world));
-      scene.add(axesHelper);
       scene.add(player.object);
 
       // world.position.x = 20;

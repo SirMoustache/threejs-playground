@@ -1,14 +1,17 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 export class Controller {
-  constructor(protected object: THREE.Object3D) {}
+  object: THREE.Object3D;
+  constructor(object: THREE.Object3D) {
+    this.object = object;
+  }
 
   bindEvents(size: number) {}
 }
 
 export class KeyboardControl extends Controller {
   bindEvents(size: number) {
-    window.addEventListener("keydown", (e) => {
+    window.addEventListener('keydown', (e) => {
       e.preventDefault();
       switch (e.keyCode) {
         case 38: // up
