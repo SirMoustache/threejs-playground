@@ -20,13 +20,13 @@ export default function App() {
       const world = createWorld();
       console.log({ world });
 
-      scene.add(new THREE.BoxHelper(world));
-      scene.add(player.object);
+      scene.addObject(new THREE.BoxHelper(world));
+      scene.addObject(player.object);
 
       // world.position.x = 20;
-      world.position.divideScalar(20).floor().multiplyScalar(20).addScalar(10);
+      // world.position.divideScalar(20).floor().multiplyScalar(20).addScalar(10);
 
-      scene.add(world);
+      scene.addObject(world);
       scene.appendTo(canvasRef.current);
       scene.render();
 
